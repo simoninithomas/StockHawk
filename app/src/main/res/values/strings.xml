@@ -33,9 +33,16 @@
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
     <string name="error_stock_name">This stock doesn\'t exists</string>
+
+    <string name="stock_price">Stock Price</string>
+
     <!-- Accessibility -->
     <string name="acc_fab_add">Add Stock</string>
     <string name="acc_add">Add </string>
     <string name="acc_cancel"> Cancel </string>
     <string name="acc_value">Change units</string>
+
+    <!-- Widget -->
+    <string name="title_widget">Stock Hawk</string>
+    <string name="error_no_data">No stock</string>
 </resources>
