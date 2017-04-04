@@ -41,13 +41,10 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
 
     @BindView(R.id.stockName)
     TextView mTextView;
-
     @BindView(R.id.percentage_change)
     TextView mPercentageChange;
     @BindView(R.id.price_change)
     TextView mPriceChange;
-
-
     @BindView(R.id.chart)
     LineChart mGraph;
 
@@ -60,17 +57,13 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_more_info);
 
-
         ButterKnife.bind(this);
 
         stockSymbol = getIntent().getStringExtra("symbol");
 
         getSupportLoaderManager().initLoader(0, null, this);
 
-
-        //String stockPrice = getIntent()
         mTextView.setText(stockSymbol);
-
 
     }
 
@@ -102,7 +95,6 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
 
         if (stockCursor.moveToFirst()) {
 
-
             // Values needed to display changes
 
             double abs_change = stockCursor.getDouble(Contract.Quote.POSITION_PERCENTAGE_CHANGE) / 100;
@@ -124,14 +116,12 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
             mPercentageChange.setText(percentageChangeString + "%");
             mPriceChange.setText(rawAbsoluteChangeString + "$");
 
-
             // Values needed for the graph
             mEntriesOfAStock = getElementForTheGraph(stockCursor.getString(Contract.Quote.POSITION_HISTORY));
 
             createGraph();
 
         }
-
 
     }
 
@@ -143,7 +133,6 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
         // longer using it.
         //swapCursor(null);
     }
-
 
     /*
         Create our graph
@@ -159,7 +148,6 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
 
         for (int i = 0; i < mEntriesOfAStock.size(); i++) {
 
-
             // Convert our timestamp to date
             String timeStampStr = mEntriesOfAStock.get(i).getmDate();
 
@@ -169,7 +157,6 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
 
             data[i] = dateFormatted;
             entries.add(new Entry(i, mEntriesOfAStock.get(i).getmPrice()));
-
 
         }
         // interface to return the value of the formatted date for each index
@@ -206,11 +193,8 @@ public class StockMoreInfo extends AppCompatActivity implements LoaderManager.Lo
         mGraph.setData(lineData);
         mGraph.invalidate();
 
-
     }
-
-/* Format the history to place it in the chart */
-            /*
+            /* Format the history to place it in the chart
             Timestamp,close,high,low,open,volume
             1433424650,43.0300,43.0500,43.0300,43.0400,176400
 

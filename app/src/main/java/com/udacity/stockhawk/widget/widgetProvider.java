@@ -9,16 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.widget.RemoteViews;
-import android.widget.Toast;
-
 import com.udacity.stockhawk.R;
-import com.udacity.stockhawk.ui.MainActivity;
 import com.udacity.stockhawk.ui.StockMoreInfo;
-
 
 public class widgetProvider extends AppWidgetProvider {
 
-    public static final String EXTRA_SYMBOL = "extra:symbol";
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
@@ -32,7 +27,6 @@ public class widgetProvider extends AppWidgetProvider {
                     .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
             remoteViews.setPendingIntentTemplate(R.id.widget_lst, clickPendingIntentTemplate);
 
-
             remoteViews.setRemoteAdapter(R.id.widget_lst, new Intent(context, widgetService.class));
             remoteViews.setEmptyView(R.id.widget_lst, R.id.widget_empty_tv);
 
@@ -41,7 +35,6 @@ public class widgetProvider extends AppWidgetProvider {
 
         }
     }
-
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {

@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Timber.d("Symbol clicked: %s", symbol);
         Intent intent = new Intent(MainActivity.this, StockMoreInfo.class);
         intent.putExtra("symbol", symbol);
-        //intent.putExtra("stockPrice", );
         startActivity(intent);
     }
 
@@ -64,15 +63,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-            setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_main);
 
         // Verify that we have an internet connection
-        if(networkUp()) {
+        if (networkUp()) {
             //Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             Snackbar snackbar = Snackbar.make(findViewById(R.id.recycler_view), R.string.error_no_network, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
@@ -104,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         }).attachToRecyclerView(stockRecyclerView);
 
-
     }
 
     @Override
@@ -112,10 +107,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onResume();
 
         // Verify that we have an internet connection
-        if(networkUp()) {
-            //Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        if (networkUp()) {
+            // Ok
+        } else {
             Snackbar snackbar = Snackbar.make(findViewById(R.id.recycler_view), R.string.error_no_network, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
@@ -223,8 +217,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return super.onOptionsItemSelected(item);
     }
 
-    public static void displayExceptionMessage(Context context)
-    {
+    public static void displayExceptionMessage(Context context) {
         Toast.makeText(context, R.string.error_stock_name, Toast.LENGTH_SHORT).show();
         Log.v("Error", "Error");
 

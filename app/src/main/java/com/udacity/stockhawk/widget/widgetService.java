@@ -3,27 +3,16 @@ package com.udacity.stockhawk.widget;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Binder;
-import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-import android.widget.Toast;
-
 import com.udacity.stockhawk.data.Contract.Quote;
-
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
-import com.udacity.stockhawk.ui.MainActivity;
-import com.udacity.stockhawk.ui.StockMoreInfo;
-
-import static com.udacity.stockhawk.R.id.symbol;
-
 
 public class widgetService extends RemoteViewsService {
-
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
@@ -42,7 +31,6 @@ public class widgetService extends RemoteViewsService {
 
         }
 
-
         // Init Cursor Function
         private void initCursor() {
             if (cursor != null) {
@@ -51,7 +39,7 @@ public class widgetService extends RemoteViewsService {
             final long identityToken = Binder.clearCallingIdentity();
 
             cursor = context.getContentResolver().query(
-                    Quote.URI,
+                    Contract.Quote.URI,
                     new String[]{
                             Contract.Quote.COLUMN_SYMBOL,
                             Contract.Quote.COLUMN_PRICE,
@@ -62,7 +50,6 @@ public class widgetService extends RemoteViewsService {
                     null);
             Binder.restoreCallingIdentity(identityToken);
         }
-
 
         @Override
         public void onCreate() {
@@ -120,11 +107,10 @@ public class widgetService extends RemoteViewsService {
                         null,
                         null,
                         null);
-                fillInIntent.putExtra(widgetProvider.EXTRA_SYMBOL, cursor.getString(0));
+
+                fillInIntent.putExtra("symbol", cursor.getString(0));
                 remoteViews.setOnClickFillInIntent(R.id.wid_list_item,fillInIntent);
-
             }
-
             return remoteViews;
         }
 

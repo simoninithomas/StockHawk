@@ -16,10 +16,10 @@
         android:textColor="#FFFFFF" />
 
     <FrameLayout
+        android:id="@+id/widget"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:id="@+id/widget">
+        android:layout_height="wrap_content">
 
         <ListView
             android:id="@+id/widget_lst"
@@ -36,7 +36,6 @@
             android:textAppearance="?android:textAppearanceLarge"
             android:textStyle="bold" />
     </FrameLayout>
-
 
 
 </LinearLayout>
